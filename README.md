@@ -59,3 +59,8 @@ babel  typescript router vuex linter/formatter (空格选择)
 No Yes Yes Eslint + Prettier   Lint on save
 
 In dedicated config file No
+
+```shell
+npm install openapi-typescript-codegen --save-dev
+openapi --input http://localhost:8080/api/v2/api-docs --output ./generated --client axios
+```
