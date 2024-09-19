@@ -14,6 +14,7 @@ export default {
     async getLoginUser({ commit, state }, payload) {
       // 从远程请求获取登录信息
       const res = await UserControllerService.getLoginUserUsingGet();
+      // 如果请求成功，存储用户信息
       if (res.code === 0) {
         commit("updateUser", res.data);
       } else {
