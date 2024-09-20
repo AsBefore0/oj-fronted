@@ -6,6 +6,7 @@ import UserRegisterView from "@/views/user/UserRegisterView.vue";
 import AdminView from "@/views/AdminView.vue";
 import NoAuthView from "@/views/NoAuthView.vue";
 import ACCESS_ENUM from "@/access/accessEnum";
+import AboutView from "@/views/AboutView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -34,14 +35,6 @@ export const routes: Array<RouteRecordRaw> = [
     component: EditorView,
   },
   {
-    path: "/hide",
-    name: "隐藏页面",
-    component: EditorView,
-    meta: {
-      hideInMenu: true,
-    },
-  },
-  {
     path: "/noAuth",
     name: "无权限",
     component: NoAuthView,
@@ -57,10 +50,6 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: "/about",
     name: "关于我的",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    component: AboutView,
   },
 ];

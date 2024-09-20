@@ -17,9 +17,6 @@
 </template>
 
 <style scoped>
-#basicLayout {
-}
-
 #basicLayout .header {
   margin-bottom: 16px;
   box-shadow: #eee 1px 1px 5px;
@@ -39,6 +36,8 @@
   left: 0;
   right: 0;
   text-align: center;
+  color: #3498db; /* 链接颜色 */
+  text-decoration: none; /* 去掉默认下划线 */
 }
 </style>
 <script>
