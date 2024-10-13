@@ -23,13 +23,13 @@
 }
 
 #basicLayout .content {
-  background: linear-gradient(to right, #bbb, #fff);
+  /* background: linear-gradient(to right, #bbb, #fff); */
   margin-bottom: 16px;
   padding: 20px;
 }
 
 #basicLayout .footer {
-  background: #efefef;
+  /* background: #efefef; */
   padding: 16px;
   position: sticky;
   bottom: 0;
