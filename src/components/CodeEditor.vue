@@ -1,16 +1,22 @@
 <template>
-  <div id="code-editor" ref="codeEditorRef" style="min-height: 400px" />
+  <div
+    id="code-editor"
+    ref="codeEditorRef"
+    style="min-height: 400px; height: 60vh"
+  />
+  <!--  <a-button @click="fillValue">填充值</a-button>-->
 </template>
 
 <script setup lang="ts">
 import * as monaco from "monaco-editor";
-import { onMounted, ref, toRaw, withDefaults, defineProps } from "vue";
+import { onMounted, ref, toRaw, withDefaults, defineProps, watch } from "vue";
 
 /**
  * 定义组件属性类型
  */
 interface Props {
   value: string;
+  language?: string;
   handleChange: (v: string) => void;
 }
 
@@ -19,6 +25,7 @@ interface Props {
  */
 const props = withDefaults(defineProps<Props>(), {
   value: () => "",
+  language: () => "java",
   handleChange: (v: string) => {
     console.log(v);
   },
@@ -27,14 +34,27 @@ const props = withDefaults(defineProps<Props>(), {
 const codeEditorRef = ref();
 const codeEditor = ref();
 
+// 监听语言变化
+watch(
+  () => props.language,
+  (newLanguage) => {
+    if (codeEditor.value) {
+      const model = toRaw(codeEditor.value).getModel();
+      if (model) {
+        monaco.editor.setModelLanguage(model, newLanguage || "java");
+      }
+    }
+  }
+);
+
 onMounted(() => {
   if (!codeEditorRef.value) {
     return;
   }
-
+  // Hover on each property to see its docs!
   codeEditor.value = monaco.editor.create(codeEditorRef.value, {
     value: props.value,
-    language: "java",
+    language: props.language,
     automaticLayout: true,
     colorDecorators: true,
     minimap: {
